@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Juan José Vilar del Valle — Strategy · Operations · Data</title>
+<meta name="description" content="Data & operations professional. Strategic Data Advisor at the OECD and Master in Management at IE Business School.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--navy:#0a1f44;--blue:#1d4ed8;--blue-2:#3b82f6;--sky:#dbeafe;--ink:#1e293b;--muted:#64748b;--line:#e8edf5;--soft:#f6f9fe}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);background:#fff;line-height:1.65;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,.num{font-family:"Space Grotesk",Inter,sans-serif;letter-spacing:-.01em;color:var(--navy)}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:880px;margin:0 auto;padding:0 24px}
+
+  /* Nav */
+  nav{position:fixed;inset:0 0 auto 0;z-index:50;transition:background .3s,box-shadow .3s}
+  nav.scrolled{background:rgba(255,255,255,.88);backdrop-filter:blur(12px);box-shadow:0 1px 0 var(--line)}
+  .links{display:flex;justify-content:center;gap:32px;height:64px;align-items:center;font-size:14px;font-weight:500;color:var(--muted)}
+  .links a{position:relative;transition:color .2s}
+  .links a::after{content:"";position:absolute;left:0;bottom:-4px;height:2px;width:0;background:var(--blue);transition:width .25s}
+  .links a:hover,.links a.active{color:var(--navy)}
+  .links a:hover::after,.links a.active::after{width:100%}
+
+  /* Hero */
+  .hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden}
+  #waves{position:absolute;inset:0;width:100%;height:100%}
+  .hero-in{position:relative;z-index:2;padding:0 24px}
+  .hero-in::before{content:"";position:absolute;inset:-80px -120px;z-index:-1;background:radial-gradient(closest-side,rgba(255,255,255,.82),rgba(255,255,255,.55) 60%,rgba(255,255,255,0))}
+  .eyebrow{font-size:13px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--blue)}
+  .hero h1{font-size:clamp(40px,7vw,76px);line-height:1.05;font-weight:700;margin-top:16px}
+  .hero h1 span{background:linear-gradient(90deg,var(--blue),var(--blue-2));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .tagline{margin-top:18px;font-size:clamp(17px,2.2vw,21px);color:var(--muted);min-height:1.7em}
+  .typed{color:var(--navy);font-weight:600}
+  .caret{display:inline-block;width:2px;height:1.1em;background:var(--blue);vertical-align:-3px;margin-left:2px;animation:blink 1s steps(1) infinite}
+  @keyframes blink{50%{opacity:0}}
+  .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+  .hero .cta{justify-content:center}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:999px;font:600 15px Inter,sans-serif;border:1px solid transparent;cursor:pointer;transition:transform .2s,box-shadow .2s,border-color .2s,color .2s}
+  .btn svg{width:18px;height:18px}
+  .btn.primary{background:var(--blue);color:#fff;box-shadow:0 8px 24px -10px rgba(29,78,216,.7)}
+  .btn.ghost{background:#fff;color:var(--navy);border-color:var(--line)}
+  .btn:hover{transform:translateY(-2px)}
+  .btn.ghost:hover{border-color:var(--blue);color:var(--blue)}
+  /* Scroll cue: label + a thin line with a light travelling down */
+  .scroll-cue{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:10px;font-size:11px;font-weight:600;letter-spacing:.3em;text-indent:.3em;text-transform:uppercase;color:#94a3b8;transition:color .2s}
+  .scroll-cue:hover{color:var(--blue)}
+  .scroll-cue .track{position:relative;width:1px;height:46px;background:linear-gradient(#cbd5e1,rgba(203,213,225,0));overflow:hidden}
+  .scroll-cue .track::after{content:"";position:absolute;left:-1px;top:-16px;width:3px;height:16px;border-radius:2px;background:linear-gradient(rgba(29,78,216,0),var(--blue));animation:drip 1.8s cubic-bezier(.6,0,.4,1) infinite}
+  @keyframes drip{to{top:46px}}
+
+  /* Sections */
+  section{padding:100px 0}
+  section.soft{background:var(--soft)}
+  .num{font-size:13px;font-weight:600;color:var(--blue);letter-spacing:.14em;text-transform:uppercase}
+  h2{font-size:clamp(28px,4vw,38px);margin:6px 0 32px}
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+
+  /* Stats (shared) */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:28px}
+  .stats.three{grid-template-columns:repeat(3,1fr)}
+  .stat .sv{font-family:"Space Grotesk";font-size:clamp(30px,4vw,40px);font-weight:700;color:var(--navy);line-height:1}
+  .stat .sv small{color:var(--blue);font-size:.6em}
+  .stat::before{content:"";display:block;height:3px;width:0;background:linear-gradient(90deg,var(--blue),var(--blue-2));border-radius:3px;margin-bottom:14px;transition:width 1.2s cubic-bezier(.2,.7,.2,1) .2s}
+  .stats.in .stat::before{width:36px}
+  .stat .sl{font-size:14px;color:var(--muted);margin-top:8px;line-height:1.45}
+
+  /* About */
+  .about p{font-size:18px;color:#334155;margin-bottom:14px;max-width:760px}
+  .about strong{color:var(--navy);font-weight:600}
+  .about .stats{margin-top:40px}
+  .countries{margin-top:28px;font-size:14px;color:var(--muted)}
+  .countries span{display:inline-block;opacity:0;transform:translateY(6px);transition:opacity .4s,transform .4s}
+  .countries.in span{opacity:1;transform:none}
+  .countries span:not(:last-child)::after{content:"·";margin:0 8px;color:#cbd5e1}
+
+  /* Experience */
+  .job{padding:36px 0;border-top:1px solid var(--line)}
+  .job:first-of-type{border-top:0;padding-top:0}
+  .job-top{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap}
+  .job h3{font-size:22px}
+  .org{color:var(--blue);font-weight:600;font-size:15px}
+  .meta{font-size:14px;color:var(--muted)}
+  .job p.what{margin:12px 0 28px;color:#334155;max-width:720px}
+  .prev{margin-top:26px;font-size:14px;color:var(--muted)}
+  .prev b{color:var(--navy);font-weight:600}
+
+  /* Education */
+  .edu{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+  .edu .yr{font-size:13px;font-weight:600;color:var(--blue);letter-spacing:.06em;text-transform:uppercase}
+  .edu h3{font-size:20px;margin:6px 0 2px}
+  .edu .school{color:var(--muted);font-size:15px}
+  .edu .hl{margin-top:14px;font-size:15px;color:#334155}
+  .edu .hl b{color:var(--navy)}
+
+  /* Skills */
+  .sk-row{display:grid;grid-template-columns:170px 1fr;gap:16px;padding:16px 0;border-top:1px solid var(--line);align-items:center}
+  .sk-row:first-child{border-top:0}
+  .sk-k{font-size:14px;font-weight:600;color:var(--navy)}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{font-size:14px;padding:6px 12px;border-radius:999px;background:#fff;border:1px solid var(--line);color:#334155;transition:all .2s}
+  .chip:hover{background:var(--blue);border-color:var(--blue);color:#fff}
+  .native{font-size:11px;font-weight:600;background:var(--blue);color:#fff;padding:2px 8px;border-radius:999px;margin-left:6px;vertical-align:1px}
+
+  /* Contact */
+  .contact{background:var(--navy);color:#fff;position:relative;overflow:hidden;text-align:center;padding:110px 0 36px}
+  #waves2{position:absolute;inset:0;width:100%;height:100%;opacity:.5}
+  .contact .wrap{position:relative;z-index:2}
+  .contact h2{color:#fff;font-size:clamp(32px,5vw,50px);line-height:1.1;margin:0}
+  .contact h2 span{color:#93c5fd}
+  .contact .lead{color:#c7d2fe;margin:16px auto 0;max-width:600px;font-size:17px}
+  .contact .lead strong{color:#fff}
+  .contact .cta{justify-content:center}
+  .contact .btn.primary{background:#fff;color:var(--navy)}
+  .contact .btn.ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.3)}
+  .contact .btn.ghost:hover{border-color:#93c5fd;color:#93c5fd}
+  .cpanel{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;max-height:0;opacity:0;overflow:hidden;transition:max-height .5s,opacity .4s,margin .4s}
+  .cpanel.open{max-height:300px;opacity:1;margin-top:20px}
+  .citem{display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:14px;padding:12px 14px 12px 18px}
+  .ck{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#93c5fd}
+  .cv{font-weight:600}
+  .cv:hover{color:#93c5fd}
+  .copy{background:#fff;color:var(--navy);border:0;border-radius:8px;padding:6px 10px;font:600 12px Inter,sans-serif;cursor:pointer}
+  .copy.ok{background:#22c55e;color:#fff}
+  footer{margin-top:90px;padding-top:22px;border-top:1px solid rgba(255,255,255,.14);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:13px;color:#a5b4d4}
+
+  /* LinkedIn posts carousel */
+  .posts-head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap}
+  .posts-head h2{margin-bottom:28px}
+  .arrows{display:flex;gap:8px;margin-bottom:32px}
+  .arrow{width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:#fff;color:var(--navy);cursor:pointer;display:grid;place-items:center;transition:all .2s}
+  .arrow:hover{border-color:var(--blue);color:var(--blue)}
+  .arrow svg{width:18px;height:18px}
+  .carousel{overflow:hidden;border-radius:20px}
+  .track{display:flex;transition:transform .7s cubic-bezier(.65,0,.35,1)}
+  .post{flex:0 0 100%;display:grid;grid-template-columns:1.15fr 1fr;background:#fff;border:1px solid var(--line);border-radius:20px;overflow:hidden;min-height:360px}
+  .post .img{position:relative;overflow:hidden;background:var(--soft)}
+  .post .img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.06);transition:transform 6s ease}
+  .post.on .img img{transform:scale(1)}
+  .post .img img.contain{object-fit:contain;padding:18px;background:#fff}
+  .post .txt{padding:36px;display:flex;flex-direction:column;justify-content:center}
+  .post .date{font-size:13px;font-weight:600;color:var(--blue);letter-spacing:.06em;text-transform:uppercase}
+  .post .date .rp{color:var(--muted);font-weight:500;text-transform:none;letter-spacing:0;margin-left:6px}
+  .post h3{font-size:22px;margin:10px 0 10px;line-height:1.25}
+  .post p{color:#475569;font-size:15px}
+  .post .go{margin-top:22px;display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:14px;color:var(--blue)}
+  .post .go:hover{gap:12px}
+  .post .go svg{width:16px;height:16px;transition:transform .2s}
+  .dots{display:flex;justify-content:center;gap:8px;margin-top:20px}
+  .dots button{width:8px;height:8px;border-radius:999px;border:0;background:#cbd5e1;cursor:pointer;padding:0;transition:all .3s}
+  .dots button.on{width:28px;background:var(--blue)}
+
+  @media (max-width:760px){
+    .post{grid-template-columns:1fr}
+    .post .img{height:240px}
+    .post .txt{padding:24px}
+    .links{gap:18px;font-size:13px}
+    .stats{grid-template-columns:repeat(2,1fr)}
+    .stats.three{grid-template-columns:repeat(3,1fr)}
+    .edu{grid-template-columns:1fr;gap:28px}
+    .sk-row{grid-template-columns:1fr;gap:8px}
+    section{padding:76px 0}
+  }
+  @media (max-width:480px){.links a:nth-child(3),.links a:nth-child(5){display:none}}
+  @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="links" id="links">
+    <a href="#about">About</a>
+    <a href="#experience">Experience</a>
+    <a href="#posts">Posts</a>
+    <a href="#education">Education</a>
+    <a href="#skills">Skills</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <canvas id="waves" aria-hidden="true"></canvas>
+  <div class="hero-in">
+    <div class="eyebrow reveal">Strategy · Operations · Data</div>
+    <h1 class="reveal">Juan José<br><span>Vilar del Valle</span></h1>
+    <p class="tagline reveal"><span class="typed" id="typed"></span><span class="caret"></span></p>
+    <div class="cta reveal">
+      <a class="btn primary" href="https://www.linkedin.com/in/juanjosevilardelvallecalcagno/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+        LinkedIn
+      </a>
+      <a class="btn ghost" href="cv.pdf" download="Juan_Jose_Vilar_del_Valle_CV.pdf">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download CV
+      </a>
+      <a class="btn ghost" href="#contact" data-open-contact>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Contact
+      </a>
+    </div>
+  </div>
+  <a href="#about" class="scroll-cue" aria-label="Scroll down">Scroll<span class="track"></span></a>
+</header>
+
+<!-- ABOUT -->
+<section id="about" class="about">
+  <div class="wrap">
+    <div class="num reveal">About me</div>
+    <h2 class="reveal">Turning data into decisions</h2>
+    <p class="reveal">Analytical, solution-driven and motivated by <strong>continuous improvement</strong>. I'm a <strong>data & operations professional</strong> with experience in the public and private sectors, most recently as <strong>Strategic Data Advisor at the OECD</strong>, alongside a <strong>Master in Management at IE Business School</strong>.</p>
+    <p class="reveal">I'm passionate about data, strategy and processes, and interested in <strong>ESG and sustainability</strong>. What I enjoy most is moving projects forward as a team and creating real impact.</p>
+    <div class="stats three reveal">
+      <div class="stat"><div class="sv"><span data-count="3">0</span><small>+</small></div><div class="sl">years turning data into decisions</div></div>
+      <div class="stat"><div class="sv"><span data-count="8">0</span></div><div class="sl">countries: an international profile</div></div>
+      <div class="stat"><div class="sv"><span data-count="3">0</span></div><div class="sl">languages · Spanish, English, German</div></div>
+    </div>
+    <div class="countries reveal"><span>Spain</span><span>France</span><span>United Kingdom</span><span>Uruguay</span><span>USA</span><span>Canada</span><span>Brazil</span><span>Colombia</span></div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience" class="soft">
+  <div class="wrap">
+    <div class="num reveal">Experience</div>
+    <h2 class="reveal">Where I've made an impact</h2>
+
+    <div class="job reveal">
+      <div class="job-top">
+        <div><h3>Strategic Data Advisor Intern</h3><div class="org">OECD</div></div>
+        <div class="meta">Paris, France · June 2026 – Dec 2026</div>
+      </div>
+      <p class="what">Built the data governance foundation for AI-ready reporting, and turned KPIs into executive stories for the CFO's office.</p>
+      <div class="stats">
+        <div class="stat"><div class="sv"><span data-count="130">0</span><small>+</small></div><div class="sl">datasets mapped</div></div>
+        <div class="stat"><div class="sv"><span data-count="100">0</span><small>+</small></div><div class="sl">stakeholders on standard metrics</div></div>
+        <div class="stat"><div class="sv"><span data-count="19">0</span></div><div class="sl">KPIs modelled for the CFO</div></div>
+        <div class="stat"><div class="sv"><span data-count="9">0</span></div><div class="sl">executive dashboards redesigned</div></div>
+      </div>
+    </div>
+
+    <div class="job reveal">
+      <div class="job-top">
+        <div><h3>Retirement Data Analyst — USA & Canada</h3><div class="org">BASF</div></div>
+        <div class="meta">Montevideo, Uruguay · Sep 2023 – Aug 2025</div>
+      </div>
+      <p class="what">Reengineered and audited processes across the Americas, and turned analysis into a regional procurement renegotiation.</p>
+      <div class="stats">
+        <div class="stat"><div class="sv">−<span data-count="3">0</span><small>%</small></div><div class="sl">vendor fees</div></div>
+        <div class="stat"><div class="sv"><span data-count="20">0</span><small>%+</small></div><div class="sl">processes reengineered</div></div>
+        <div class="stat"><div class="sv"><span data-count="16">0</span></div><div class="sl">core processes audited</div></div>
+        <div class="stat"><div class="sv">−<span data-count="6">0</span><small>%</small></div><div class="sl">operational risk</div></div>
+      </div>
+      <div class="prev">Previously at BASF: <b>Intern, Cash Management</b> · Financial close for Brazil & Colombia · Oct 2022 – Aug 2023</div>
+    </div>
+  </div>
+</section>
+
+<!-- LINKEDIN POSTS (2025 onwards) — to add a post: copy one <article class="post">, newest first -->
+<section id="posts">
+  <div class="wrap">
+    <div class="posts-head">
+      <div><div class="num reveal">Latest on LinkedIn</div><h2 class="reveal">Recent milestones</h2></div>
+      <div class="arrows reveal">
+        <button class="arrow" id="prev" aria-label="Previous post"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+        <button class="arrow" id="next" aria-label="Next post"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg></button>
+      </div>
+    </div>
+    <div class="carousel reveal" id="carousel">
+      <div class="track" id="track">
+        <article class="post">
+          <div class="img"><img src="posts/astrazeneca.jpg" alt="Team presenting SEIL at the AstraZeneca Tech Impact Lab" style="object-position:center 72%" loading="lazy"></div>
+          <div class="txt">
+            <div class="date">Jun 2026</div>
+            <h3>Runner-Up, AstraZeneca Tech Impact Lab</h3>
+            <p>Our team placed second at IE Business School with SEIL, an AI-native engagement platform for healthcare.</p>
+            <a class="go" href="https://www.linkedin.com/posts/juanjosevilardelvallecalcagno_astrazeneca-techimpactlab-healthcareinnovation-ugcPost-7472738700653858821-8B4W/" target="_blank" rel="noopener">View on LinkedIn <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+          </div>
+        </article>
+        <article class="post">
+          <div class="img"><img src="posts/top10.jpg" alt="IE Business School Blue Torch distinction" loading="lazy"></div>
+          <div class="txt">
+            <div class="date">Jun 2026</div>
+            <h3>Top 10% of my intake at IE</h3>
+            <p>Recognised with the Blue Torch distinction in the Master in Management at IE Business School, Madrid.</p>
+            <a class="go" href="https://www.linkedin.com/posts/juanjosevilardelvallecalcagno_iebusinessschool-bluetorch-masterinmanagement-ugcPost-7470581224269504512-MMK0/" target="_blank" rel="noopener">View on LinkedIn <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+          </div>
+        </article>
+        <article class="post">
+          <div class="img"><img src="posts/career.jpg" alt="IE MiM Career Accelerator kick-off" loading="lazy"></div>
+          <div class="txt">
+            <div class="date">Feb 2026 <span class="rp">· Reposted</span></div>
+            <h3>MiM Career Accelerator kick-off</h3>
+            <p>IE's Talent & Career team launched the Career Accelerator with the January intake, a programme I support as Class Career Rep.</p>
+            <a class="go" href="https://www.linkedin.com/feed/update/urn:li:activity:7424514212414246930/" target="_blank" rel="noopener">View on LinkedIn <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+          </div>
+        </article>
+      </div>
+    </div>
+    <div class="dots" id="dots"></div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education" class="soft">
+  <div class="wrap">
+    <div class="num reveal">Education</div>
+    <h2 class="reveal">Academic background</h2>
+    <div class="edu">
+      <div class="reveal">
+        <div class="yr">Dec 2026</div>
+        <h3>Master in Management</h3>
+        <div class="school">IE Business School · Madrid</div>
+        <div class="hl"><b>GPA 3.88 / 4.00</b> · Top 4 of 56 · Beta Gamma Sigma<br>2nd place, AstraZeneca Tech Impact Lab Challenge</div>
+      </div>
+      <div class="reveal">
+        <div class="yr">July 2023</div>
+        <h3>Bachelor in Business Administration</h3>
+        <div class="school">Universidad de Montevideo</div>
+        <div class="hl"><b>GPA 3.7</b> · Academic Performance Award<br>Exchange at the University of Essex, UK</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="wrap">
+    <div class="num reveal">Skills</div>
+    <h2 class="reveal">Toolkit</h2>
+    <div class="reveal">
+      <div class="sk-row"><div class="sk-k">Data & BI</div><div class="chips"><span class="chip">Power BI</span><span class="chip">SQL</span><span class="chip">Python</span><span class="chip">Advanced Excel</span><span class="chip">Looker</span><span class="chip">Microsoft Fabric</span></div></div>
+      <div class="sk-row"><div class="sk-k">Process & Systems</div><div class="chips"><span class="chip">Celonis</span><span class="chip">Bizagi</span><span class="chip">SAP</span><span class="chip">ServiceNow</span><span class="chip">Purview</span></div></div>
+      <div class="sk-row"><div class="sk-k">Languages</div><div class="chips"><span class="chip">Spanish <span class="native">Native</span></span><span class="chip">English · Fluent</span><span class="chip">German · Basic</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <canvas id="waves2" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <h2 class="reveal">Let's turn your data<br>into <span>impact</span>.</h2>
+    <p class="lead reveal">Open to roles in <strong>Strategy & Operations</strong> and data analytics, designing the best operational strategy and backing every decision with data. Based in Madrid, with an EU work permit.</p>
+    <div class="cta reveal">
+      <button class="btn primary" id="contactBtn" aria-expanded="false" aria-controls="contactPanel">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Contact
+      </button>
+      <a class="btn ghost" href="https://www.linkedin.com/in/juanjosevilardelvallecalcagno/" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn ghost" href="cv.pdf" download="Juan_Jose_Vilar_del_Valle_CV.pdf">Download CV (PDF)</a>
+    </div>
+    <div class="cpanel" id="contactPanel">
+      <div class="citem"><span class="ck">Email</span><a class="cv" href="mailto:juanjovilardelvalle@gmail.com">juanjovilardelvalle@gmail.com</a><button class="copy" data-copy="juanjovilardelvalle@gmail.com">Copy</button></div>
+      <div class="citem"><span class="ck">Phone</span><a class="cv" href="tel:+34614003982">+34 614 003 982</a><button class="copy" data-copy="+34614003982">Copy</button></div>
+    </div>
+    <footer>
+      <span>© <span id="yr"></span> Juan José Vilar del Valle Calcagno</span>
+      <span>Madrid, Spain</span>
+    </footer>
+  </div>
+</section>
+
+<script>
+(() => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  /* Flowing lines background */
+  function waveField(canvas, {lines, color, alpha, amp, speed}){
+    const ctx = canvas.getContext('2d');
+    let w, h, t = 0, mx = -9999, my = -9999, raf;
+    const size = () => { const d = Math.min(devicePixelRatio || 1, 2); w = canvas.clientWidth; h = canvas.clientHeight; canvas.width = w*d; canvas.height = h*d; ctx.setTransform(d,0,0,d,0,0); };
+    function draw(){
+      ctx.clearRect(0, 0, w, h);
+      for (let i = 0; i < lines; i++){
+        const p = i / lines; ctx.beginPath();
+        for (let x = -20; x <= w + 20; x += 12){
+          const nx = x / w;
+          let y = h*(.15 + p*.95) - nx*h*.45 + Math.sin(nx*4 + t + p*3)*amp*(.6 + p) + Math.sin(nx*9 - t*1.3 + p*6)*amp*.25;
+          const dx = x - mx, dy = y - my, d2 = dx*dx + dy*dy;
+          if (d2 < 22000) y += dy / Math.sqrt(d2 + 1) * (22000 - d2) / 900;
+          x === -20 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+        }
+        ctx.strokeStyle = `rgba(${color},${alpha*(.3 + .7*Math.sin(p*Math.PI))})`; ctx.lineWidth = 1; ctx.stroke();
+      }
+      t += speed; if (!reduce) raf = requestAnimationFrame(draw);
+    }
+    size(); draw();
+    addEventListener('resize', () => { size(); if (reduce) draw(); });
+    const host = canvas.parentElement;
+    host.addEventListener('mousemove', e => { const r = canvas.getBoundingClientRect(); mx = e.clientX - r.left; my = e.clientY - r.top; });
+    host.addEventListener('mouseleave', () => { mx = my = -9999; });
+    new IntersectionObserver(([e]) => { if (reduce) return; cancelAnimationFrame(raf); if (e.isIntersecting) raf = requestAnimationFrame(draw); }).observe(canvas);
+  }
+  /* Hero: rotating globe of dots, with arcs linking points (an international network) */
+  function globe(canvas){
+    const ctx = canvas.getContext('2d');
+    let w, h, R, cx, cy, rot = 0, tilt = .35, tx = 0, ty = 0, raf;
+    const N = 1100, pts = [], gold = Math.PI * (3 - Math.sqrt(5));
+    for (let i = 0; i < N; i++){ const y = 1 - (i / (N - 1)) * 2, r = Math.sqrt(1 - y*y), t = gold * i; pts.push([Math.cos(t)*r, y, Math.sin(t)*r]); }
+    // a few "routes" between random points on the sphere
+    const dot = (a, b) => a[0]*b[0] + a[1]*b[1] + a[2]*b[2];
+    const pairs = [];
+    [60, 170, 290, 400, 520, 640, 750, 860, 980, 1060].forEach(i => {
+      const a = pts[i], j = pts.findIndex(b => { const d = dot(a, b); return d > .55 && d < .75; });
+      if (j >= 0) pairs.push([a, pts[j]]);
+    });
+    const size = () => { const d = Math.min(devicePixelRatio || 1, 2); w = canvas.clientWidth; h = canvas.clientHeight; canvas.width = w*d; canvas.height = h*d; ctx.setTransform(d,0,0,d,0,0); R = Math.min(w * .42, h * .34); cx = w/2; cy = h * .47; };
+    const proj = ([x, y, z]) => {
+      const ca = Math.cos(rot), sa = Math.sin(rot), ct = Math.cos(tilt), st = Math.sin(tilt);
+      const x1 = x*ca - z*sa, z1 = x*sa + z*ca, y1 = y*ct - z1*st, z2 = y*st + z1*ct;
+      return [cx + x1*R, cy + y1*R, z2];
+    };
+    // slerp-style arc between two unit vectors, lifted above the surface
+    const arc = (a, b, steps = 40) => { const out = []; for (let i = 0; i <= steps; i++){ const t = i/steps; let v = a.map((c, k) => c*(1-t) + b[k]*t); const m = Math.hypot(...v), lift = 1 + .1*Math.sin(Math.PI*t); out.push(v.map(c => c/m*lift)); } return out; };
+    const arcs = pairs.map(([a, b]) => arc(a, b));
+    function draw(now = 0){
+      ctx.clearRect(0, 0, w, h);
+      for (const p of pts){
+        const [x, y, z] = proj(p), k = (z + 1) / 2;
+        ctx.globalAlpha = .08 + .5*k; ctx.fillStyle = k > .5 ? '#1d4ed8' : '#3b82f6';
+        ctx.beginPath(); ctx.arc(x, y, .7 + 1.5*k, 0, 6.283); ctx.fill();
+      }
+      // routes: drawn on the front side, with a travelling highlight
+      arcs.forEach((a, i) => {
+        const P = a.map(proj);
+        ctx.lineWidth = 1.4;
+        for (let j = 1; j < P.length; j++){
+          const z = (P[j][2] + 1) / 2; if (z < .45) continue;
+          ctx.globalAlpha = .45*z; ctx.strokeStyle = '#3b82f6';
+          ctx.beginPath(); ctx.moveTo(P[j-1][0], P[j-1][1]); ctx.lineTo(P[j][0], P[j][1]); ctx.stroke();
+        }
+        const m = P[Math.floor(((now/1600 + i*.37) % 1) * (P.length - 1))];
+        if ((m[2] + 1)/2 > .45){ ctx.globalAlpha = .9; ctx.fillStyle = '#1d4ed8'; ctx.beginPath(); ctx.arc(m[0], m[1], 2.6, 0, 6.283); ctx.fill(); }
+      });
+      ctx.globalAlpha = 1;
+      rot += .0022 + tx*.004; tilt += ((.35 + ty*.25) - tilt) * .05;
+      if (!reduce) raf = requestAnimationFrame(draw);
+    }
+    size(); draw();
+    addEventListener('resize', () => { size(); if (reduce) draw(); });
+    canvas.parentElement.addEventListener('mousemove', e => { tx = e.clientX / innerWidth - .5; ty = e.clientY / innerHeight - .5; });
+    new IntersectionObserver(([e]) => { if (reduce) return; cancelAnimationFrame(raf); if (e.isIntersecting) raf = requestAnimationFrame(draw); }).observe(canvas);
+  }
+  globe(document.getElementById('waves'));
+  waveField(document.getElementById('waves2'), {lines: 30, color: '147,197,253', alpha: .4, amp: 28, speed: .005});
+
+  /* Typing tagline */
+  const words = ['Strategy & Operations', 'Data & Process Excellence', 'OECD & BASF experience', 'Master in Management at IE'];
+  const el = document.getElementById('typed');
+  if (reduce) el.textContent = words[0];
+  else { let wi = 0, ci = 0, del = false;
+    (function tick(){ const w = words[wi]; el.textContent = w.slice(0, ci);
+      if (!del && ci === w.length){ del = true; return setTimeout(tick, 1800); }
+      if (del && ci === 0){ del = false; wi = (wi + 1) % words.length; }
+      ci += del ? -1 : 1; setTimeout(tick, del ? 30 : 60); })(); }
+
+  /* Reveal + count-up */
+  const countUp = n => { const end = +n.dataset.count, t0 = performance.now();
+    if (reduce) return n.textContent = end;
+    (function step(now){ const k = Math.min((now - t0)/1400, 1); n.textContent = Math.round(end*(1 - Math.pow(1 - k, 3))); if (k < 1) requestAnimationFrame(step); })(t0); };
+  const io = new IntersectionObserver(es => es.forEach(({isIntersecting, target}) => {
+    if (!isIntersecting) return;
+    target.classList.add('in');
+    target.querySelectorAll('.stats').forEach(s => s.classList.add('in'));
+    target.querySelectorAll('[data-count]').forEach(countUp);
+    io.unobserve(target);
+  }), {threshold: .2});
+  document.querySelectorAll('.reveal').forEach(n => io.observe(n));
+  document.querySelectorAll('.countries span').forEach((s, i) => s.style.transitionDelay = i*90 + 'ms');
+
+  /* Nav state */
+  const nav = document.getElementById('nav'), links = [...document.querySelectorAll('.links a')];
+  const secs = links.map(a => document.querySelector(a.getAttribute('href')));
+  const onScroll = () => {
+    nav.classList.toggle('scrolled', scrollY > 30);
+    let cur = -1; secs.forEach((s, i) => { if (s.getBoundingClientRect().top < innerHeight*.4) cur = i; });
+    links.forEach((a, i) => a.classList.toggle('active', i === cur));
+  };
+  addEventListener('scroll', onScroll, {passive: true}); onScroll();
+
+  /* LinkedIn carousel: auto-advance, arrows, dots, swipe, pause on hover */
+  (() => {
+    const track = document.getElementById('track'), slides = [...track.children], dotsEl = document.getElementById('dots'), box = document.getElementById('carousel');
+    let i = 0, timer;
+    const dots = slides.map((_, k) => { const b = document.createElement('button'); b.setAttribute('aria-label', 'Post ' + (k + 1)); b.onclick = () => { go(k); restart(); }; dotsEl.appendChild(b); return b; });
+    function go(k){
+      i = (k + slides.length) % slides.length;
+      track.style.transform = `translateX(-${i*100}%)`;
+      slides.forEach((s, n) => s.classList.toggle('on', n === i));
+      dots.forEach((d, n) => d.classList.toggle('on', n === i));
+    }
+    const restart = () => { clearInterval(timer); if (!reduce) timer = setInterval(() => go(i + 1), 5000); };
+    document.getElementById('prev').onclick = () => { go(i - 1); restart(); };
+    document.getElementById('next').onclick = () => { go(i + 1); restart(); };
+    box.addEventListener('mouseenter', () => clearInterval(timer));
+    box.addEventListener('mouseleave', restart);
+    let x0 = null;
+    box.addEventListener('touchstart', e => x0 = e.touches[0].clientX, {passive: true});
+    box.addEventListener('touchend', e => { if (x0 === null) return; const dx = e.changedTouches[0].clientX - x0; if (Math.abs(dx) > 40){ go(i + (dx < 0 ? 1 : -1)); restart(); } x0 = null; });
+    go(0); restart();
+  })();
+
+  /* Contact panel */
+  const cBtn = document.getElementById('contactBtn'), cPanel = document.getElementById('contactPanel');
+  cBtn.onclick = () => cBtn.setAttribute('aria-expanded', cPanel.classList.toggle('open'));
+  document.querySelectorAll('[data-open-contact]').forEach(a => a.addEventListener('click', () => { cPanel.classList.add('open'); cBtn.setAttribute('aria-expanded', true); }));
+  document.querySelectorAll('.copy').forEach(b => b.onclick = async () => {
+    try { await navigator.clipboard.writeText(b.dataset.copy); } catch (e) {}
+    b.textContent = 'Copied ✓'; b.classList.add('ok');
+    setTimeout(() => { b.textContent = 'Copy'; b.classList.remove('ok'); }, 1800);
+  });
+})();
+</script>
+</body>
+</html>
